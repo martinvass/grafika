@@ -1,0 +1,2 @@
+# grafika
+ME - számítógépi grafika
