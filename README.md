@@ -1,48 +1,90 @@
-# Virtuális Művészeti Galéria
+Virtuális Művészeti Galéria
 
-Egy C, OpenGL, SDL2 és GLUT alapú egyszerű projekt, amely lehetővé teszi, hogy első személyű nézetben sétálj egy virtuális művészeti galériában.
+Ez a projekt egy C nyelvű, OpenGL és GLUT alapokra épülő interaktív alkalmazás, amely lehetővé teszi, hogy első személyű nézetben sétálj végig egy virtuális művészeti galériában. A szobában festmények és szobrok (3D objektumok) várják a látogatót, és különféle vizuális effektek, világítás, köd és ütközésvizsgálat biztosítja a valósághű élményt.
 
-Megtekinthetőek festmények és szobrok, ezekkel interaktálni is lehet egyaránt.
+🌟 Főbb funkciók
 
----
+Első személyű kamera: folyamatos, sima mozgás (W/A/S/D), egérhúzással irányítás, sebességfüggő delta-idő alapú frissítés
 
-## Főbb funkciók
+Fények és köd: irányított fényforrás, állítható fényerő (+ / -), lineáris köd-effekt (fog) a tér mélységének érzékeltetéséhez
 
-* **Első személyű kamera**: WASD + egér nézet mozgatás
-* **3D modellek**: OBJ betöltő szobrokhoz, festményekhez
-* **Fények**: irányított és spot fényforrások, `+`/`-` a fényerő állításához
-* **Segítség (help) panel**: `F1`-gyel előhívható vezérlő- és információs átfedés
-* **Interaktálás szobrokkal**: A szobrokra kattintva azok forgathatóak
+3D modellek: OBJ formátumú szobrok és festmények betöltése, egységesítés (unitize), textúrázás
 
----
+Festmények: textúrázott quad-ok a falakon, kattintással nagyítva megtekinthetők (kinagyítás overlay)
 
-## Fordítás és futtatás
+Segítség panel: F1-gyel előhívható vezérlő- és információs panel, billentyűk és egér funkciók összefoglalója
 
-### macOS
+Ütközésvizsgálat: AABB (axis-aligned bounding box) alapú, nem lehet áthaladni a pedálcsoportokon és a falakon
 
-```bash
-make macos
-./beadando
-```
+📋 Követelmények & függőségek
 
-### Windows
+Fordító: clang vagy gcc (C99 kompatibilis)
 
-```bash
-make all
-beadando.exe
-```
+Könyvtárak:
 
----
+OpenGL
 
-## Vezérlés
+FreeGLUT / GLUT
 
-| Művelet                       | Billentyű / Egér     |
-| ----------------------------- | -------------------- |
-| Előre / hátra mozgás          | W / S                |
-| Balra / jobbra mozgás         | A / D                |
-| Fel / le mozogás              | Space / C            |
-| Fényerő növelése              | +                    |
-| Fényerő csökkentése           | -                    |
-| Segítségpanelen megjelenítése | F1                   |
+stb_image (stb_image.h) képfájlok betöltéséhez
+
+Platform: macOS
+
+💻 Fordítás és futtatás
+
+macOS
+
+# Projekt gyökérkönyvtárban:
+make
+./virtual_gallery
+
+Tisztítás:
+
+make clean
+
+🎮 Irányítás
+
+Művelet
+
+Billentyű / Egér
+
+Mozgás előre / hátra
+
+W / S
+
+Mozgás balra / jobbra
+
+A / D
+
+Szabadnézet (look around)
+
+Bal egérgomb + mozgatás
+
+Fényerő növelése / csökkentése
+
++ / -
+
+Segítségpanel
+
+F1
+
+Festmény kinagyítása
+
+Bal egérgomb kattintás falon
+
+Kilépés
+
+ESC
+
+📂 Projekt felépítése
+
+virtual_gallery/
+├── Makefile
+├── README.md
+├── main.c            # Fő forráskód
+├── stb_image.h       # Képfájl betöltő könyvtár
+├── assets/
+   ├── textures/     # Festmény- és egyéb PNG/JPG textúrák
+   └── models/       # OBJ modellek szobrokhoz
 
 ---

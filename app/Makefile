@@ -1,15 +1,14 @@
-all:
-	gcc -o beadando.exe -Iinclude/ src/* -lSOIL -lopengl32 -lglu32 -lglut32 -std=c99
+CC=clang
+CFLAGS=-Wall -Wextra -std=c99
+LDFLAGS=-framework OpenGL -framework GLUT -lm
 
-linux:
-	gcc -o beadando.exe -Iinclude/ src/* -lSOIL -lGL -lGLU -lglut -std=c99
+all: virtual_gallery
 
-macos:
-	@echo "Building for macOS…"
-	gcc -o beadando \
-	    -Iinclude \
-	    $(shell find src -type f -name '*.c') \
-	    -framework OpenGL \
-	    -framework GLUT \
-	    -framework Cocoa \
-	    -std=c99
+virtual_gallery: main.o
+	$(CC) $(CFLAGS) -o $@ main.o $(LDFLAGS)
+
+main.o: main.c
+	$(CC) $(CFLAGS) -c main.c
+
+clean:
+	rm -f virtual_gallery *.o
