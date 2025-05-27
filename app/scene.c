@@ -111,13 +111,15 @@ void drawPedestal(float x, float y, float z) {
 }
 
 void drawModel(Mesh *m, float x, float y, float z) {
+  const float yOffset = 1.05f;
+
   glEnable(GL_TEXTURE_2D);
   glPushMatrix();
-  glTranslatef(x, y, z);
+  glTranslatef(x, y - yOffset, z);
 
   glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
 
-  float s = m->scale * 5.5f;
+  float s = m->scale * 3.5f;
   glScalef(s, s, s);
   glTranslatef(-m->center.x, -m->center.y, -m->center.z);
   drawMesh(m, modelTex);

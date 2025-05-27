@@ -8,9 +8,9 @@ OBJS     := $(SRCS:%.c=$(OBJDIR)/%.o)
 
 .PHONY: all clean
 
-all: $(OBJDIR) virtual_gallery
+all: $(OBJDIR) beadando
 
-virtual_gallery: $(OBJS)
+beadando: $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LDFLAGS)
 
 $(OBJDIR):
@@ -20,4 +20,4 @@ $(OBJDIR)/%.o: %.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf virtual_gallery $(OBJDIR)
+	rm -rf beadando $(OBJDIR)
