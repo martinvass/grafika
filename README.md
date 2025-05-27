@@ -1,68 +1,90 @@
 # Virtuális Művészeti Galéria
 
-Ez a projekt egy C nyelvű, OpenGL és GLUT alapokra épülő interaktív alkalmazás, amely lehetővé teszi, hogy első személyű nézetben sétálj végig egy virtuális művészeti galériában. A szobában festmények és szobrok (3D objektumok) várják a látogatót, és különféle vizuális effektek, világítás, köd és ütközésvizsgálat biztosítja a valósághű élményt.
+Ez a projekt egy C nyelven írt, OpenGL/GLUT alapokra épülő interaktív alkalmazás, ahol első-személyű nézetben barangolhatsz egy virtuális művészeti galériában. A térben festmények és 3D-szobrok várnak felfedezésre, a valósághű élményt pedig fény-árnyék effektusok, lineáris köd és AABB-alapú ütközésvizsgálat teszi teljessé.
 
 ---
 
 ## 🌟 Főbb funkciók
 
-- **Első személyű kamera**: folyamatos, sima mozgás (W/A/S/D), egérhúzással irányítás, sebességfüggő _delta_-idő alapú frissítés
-- **Fények és köd**: irányított fényforrás, állítható fényerő (+ / -), lineáris köd-effekt (fog) a tér mélységének érzékeltetéséhez
-- **3D modellek**: OBJ formátumú szobrok és festmények betöltése, egységesítés (_unitize_), textúrázás
-- **Festmények**: textúrázott quad-ok a falakon, kattintással nagyítva megtekinthetők (kinagyítás overlay)
-- **Ütközésvizsgálat**: AABB (axis-aligned bounding box) alapú, nem lehet áthaladni a pedálcsoportokon és a falakon
+- **Első személyű kamera**:  
+  W/A/S/D mozgás, egérrel nézelődés, delta‐idő alapú sima frissítés  
+- **Fények & köd**:  
+  Állítható fényerő (+ / –), lineáris köd a mélység érzékeltetéséhez  
+- **3D modellek**:  
+  OBJ fájlok betöltése, egységesítés (_unitize_), normál‐ és textúra koordináták  
+- **Festmények**:  
+  Textúrázott quad-ok a falakon, kattintással fullscreen overlay  
+- **Ütközésvizsgálat**:  
+  A falak és kiállítópedálok körül AABB blokkolás  
 
 ---
 
 ## 📋 Követelmények & függőségek
 
-- **Fordító**: clang vagy gcc (C99 kompatibilis)
-- **Könyvtárak**:
-  - OpenGL
-  - FreeGLUT / GLUT
-  - stb_image (`stb_image.h`) képfájlok betöltéséhez
-- **Platform**: macOS
+- **Fordító**: clang vagy gcc (C99 támogatással)  
+- **Könyvtárak**:  
+  - OpenGL  
+  - FreeGLUT / GLUT  
+  - stb_image (`stb_image.h`)  
+- **Platform**: macOS  
 
 ---
 
 ## 💻 Fordítás és futtatás
 
-### macOS
 ```bash
 # Projekt gyökérkönyvtárban:
 make
 ./virtual_gallery
 ```
 
-**Tisztítás**:
+**Takarítás**:
 ```bash
 make clean
-``` 
+```
 
 ---
 
 ## 🎮 Irányítás
 
-| Művelet                           | Billentyű / Egér              |
-|-----------------------------------|-------------------------------|
-| Mozgás előre / hátra              | W / S                         |
-| Mozgás balra / jobbra             | A / D                         |
-| Szabadnézet (look around)         | Bal egérgomb + mozgatás       |
-| Fényerő növelése / csökkentése    | + / -                         |
-| Segítségpanel                     | F1                            |
-| Festmény kinagyítása               | Bal egérgomb kattintás falon  |
-| Kilépés                           | ESC                           |
+| Művelet                          | Billentyű / Egér                  |
+|----------------------------------|-----------------------------------|
+| Mozgás előre / hátra             | W / S                             |
+| Mozgás balra / jobbra            | A / D                             |
+| Szabad nézet (look around)       | Bal egérgomb + mozgatás           |
+| Fényerő növelése / csökkentése   | + / –                             |
+| Segítségpanel (overlay)          | F1                                |
+| Festmény kinagyítása (overlay)   | Bal egérgomb kattintás falon      |
+| Kilépés                          | ESC                               |
 
 ---
 
 ## 📂 Projekt felépítése
-```
+
+\`\`\`
 virtual_gallery/
 ├── Makefile
 ├── README.md
-├── main.c            # Fő forráskód
-├── stb_image.h       # Képfájl betöltő könyvtár
 ├── assets/
-    ├── textures/     # Festmény- és egyéb PNG/JPG textúrák
-    └── models/       # OBJ modellek szobrokhoz
-```
+│   ├── textures/     # PNG/JPG textúrák
+│   └── models/       # OBJ 3D modellek
+├── build/            # .o build fájlok
+│   └── *.o
+├── includes/         # Publikus header fájlok
+│   ├── camera.h
+│   ├── input.h
+│   ├── mesh.h
+│   ├── render.h
+│   ├── scene.h
+│   ├── stb_image.h
+│   ├── textures.h
+│   └── types.h
+├── camera.c
+├── input.c
+├── main.c
+├── mesh.c
+├── render.c
+├── scene.c
+├── textures.c
+└── types.c
+\`\`\`
