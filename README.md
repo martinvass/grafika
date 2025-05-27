@@ -35,7 +35,7 @@ Ez a projekt egy C nyelven írt, OpenGL/GLUT alapokra épülő interaktív alkal
 ```bash
 # Projekt gyökérkönyvtárban:
 make
-./virtual_gallery
+./beadando
 ```
 
 **Takarítás**:
