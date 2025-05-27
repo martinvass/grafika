@@ -61,7 +61,7 @@ make clean
 
 ## 📂 Projekt felépítése
 ```
-virtual_gallery/
+app/
 ├── Makefile
 ├── README.md
 ├── assets/
