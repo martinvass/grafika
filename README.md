@@ -60,8 +60,7 @@ make clean
 ---
 
 ## 📂 Projekt felépítése
-
-\`\`\`
+```
 virtual_gallery/
 ├── Makefile
 ├── README.md
@@ -87,4 +86,4 @@ virtual_gallery/
 ├── scene.c
 ├── textures.c
 └── types.c
-\`\`\`
+```
