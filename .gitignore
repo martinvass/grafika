@@ -1,3 +1,9 @@
 me-courses/
 .vscode/
 .DS_Store
+
+# Build artifacts
+build/
+
+# Executable
+virtual_gallery
