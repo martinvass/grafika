@@ -3,7 +3,7 @@ me-courses/
 .DS_Store
 
 # Build artifacts
-build/
+app/build/
 
 # Executable
-virtual_gallery
+app/virtual_gallery
