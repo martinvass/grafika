@@ -1,14 +1,23 @@
-CC=clang
-CFLAGS=-Wall -Wextra -std=c99
-LDFLAGS=-framework OpenGL -framework GLUT -lm
+CC       := clang
+CFLAGS   := -Wall -Wextra -std=c99 -I./includes
+LDFLAGS  := -framework OpenGL -framework GLUT -lm
 
-all: virtual_gallery
+SRCS     := main.c types.c mesh.c textures.c scene.c camera.c input.c render.c
+OBJDIR   := build
+OBJS     := $(SRCS:%.c=$(OBJDIR)/%.o)
 
-virtual_gallery: main.o
-	$(CC) $(CFLAGS) -o $@ main.o $(LDFLAGS)
+.PHONY: all clean
 
-main.o: main.c
-	$(CC) $(CFLAGS) -c main.c
+all: $(OBJDIR) virtual_gallery
+
+virtual_gallery: $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LDFLAGS)
+
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
+$(OBJDIR)/%.o: %.c | $(OBJDIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f virtual_gallery *.o
+	rm -rf virtual_gallery $(OBJDIR)
